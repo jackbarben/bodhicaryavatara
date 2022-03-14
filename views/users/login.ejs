@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate')%>
+
+    <link rel="stylesheet" href="/css/login.css">
+
+    <ul>
+        <% if (typeof errors !='undefined' ) { %>
+            <% errors.forEach(error=> { %>
+                <li>
+                    <%= error.message %>
+                </li>
+                <% }) %>
+                    <% } %>
+    </ul>
+
+    <ul>
+        <% if(messages.success_msg) { %>
+            <li>
+                <%= messages.success_msg %>
+            </li>
+            <% } %>
+    </ul>
+
+    <ul>
+        <% if (messages.error) { %>
+            <li>
+                <%= messages.error %>
+            </li>
+            <% } %>
+    </ul>
+
+
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="text-center" id="login-heading">Login</h1>
+            <div class="col-lg-4 text-center" id="login-container">
+
+                <form class="form-group row justify-content-center" action="/users/login" method="POST">
+                    <div class="col-lg-8 mt-5">
+                        <input type="email" id="email" name="email" placeholder="Email" class="form-control" required>
+                    </div>
+                    <div class="col-lg-8 form-group mt-3">
+                        <input class="form-control" type="password" id="password" name="password" placeholder="Password" required />
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary mt-3" id="login-login">Submit</button>
+                    </div>
+                </form>
+                <div class="anchor-container">
+                    <a href="/users/register" id="login-register">Register Here></a>
+                </div>
+            </div>
+        </div>
+    </div>

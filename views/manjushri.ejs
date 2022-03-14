@@ -1,0 +1,98 @@
+<% layout('layouts/boilerplate')%>
+
+
+
+    <div class="container sticky-top" id="sticky-top">
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div class="card d-flex flex-column justify-content-between">
+                    <div class="card-body text-center">
+                        <h5 id="translatedWord" class="card-title display-5">Tibetan</h5>
+                        <h6 id="phoneticWord" class="card-text"></h6>
+                        <h6 id="typeSpeech" class="card-subtitle mb-2 h5 text-muted">Part of Speech</h6>
+                        <h6 class="card-title">See also:</h6>
+                        <div id="see-also" class="card-title h3"></div>
+                        <p id="blankTranslation" class="card-text h5">Click on a tibetan word to the right for a definition.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="container mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-6 text-center">
+                            <button class="btn" id="tibetan-on">Tibetan</button>
+                            <button class="btn btn-info" id="english-on">English</button>
+                            <button class="btn btn-danger" id="phonetic-on">Phonetic</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-10 offset-1 manjushri-container">
+                <div class="h3 text-center" style="color: #901517;">རྒྱ་གར་སྐད་དུ།། ཤྲཱི་ཛྙཱ་ན་གུ་ཎ་བྷ་དྲ་ནཱ་མསྟུ་སྟི།།
+                </div>
+                <div class="h3 text-center" style="color: rgb(0, 0, 0);">བོད་སྐད་དུ།། དཔལ་ཡེ་ཤེས་ཡོན་ཏན་བཟང་པོ་ཞེས་བྱ་བའི་བསྟོད་པ།།
+                </div>
+                <div class="h3 text-center mb-5" style="color: rgb(14, 14, 157);">Praise of the Excellent Qualities of Glorious Wisdom
+                </div>
+
+
+
+
+                <% for (i=0; i <gangloma.length; i++) { %>
+                    <div id="tib-verse-container" class="container text-center">
+                        <div class="row d-inline">
+
+                            <div class="col order-5 tib<%=i%> mb-2 tibetan-line">
+                                <% for (j=0; j<gangloma[i].length; j++) { %>
+                                    <span class="h3 d-inline tibetan-span">
+
+                                        <%=gangloma[i][j][0]%>
+                                    </span>
+                                    <% }%>
+                            </div>
+                            <div class="col mb-2 phonetic-line is-hidden">
+                                <% for (j=0; j<gangloma[i].length; j++) { %>
+                                    <% if (gangloma[i][j][3]==='' ) { %>
+                                        <% } else { %>
+                                            <strong class="h3 d-inline phonetic-span ">
+                                                <%=gangloma[i][j][3]%>
+                                            </strong>
+                                            <% }%>
+                                                <% }%>
+                            </div>
+                            <div class="col english english-line">
+                                <%= ganglomaRows[i].english %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }%>
+
+                        <div class="text-center display-1" id="arapatsa">
+                            ཨོཾ་ཨ་ར་པ་ཙ་ན་དྷཱིཿ
+                        </div>
+
+
+
+            </div>
+        </div>
+        <div class="space"></div>
+    </div>
+
+
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/manjushri.js"></script>
+    </body>
+
+    </html>

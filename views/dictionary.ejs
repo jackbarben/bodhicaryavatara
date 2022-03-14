@@ -1,0 +1,126 @@
+<% layout('layouts/boilerplate')%>
+
+
+
+    <form action="/dictionary" method="GET">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-3  text-center">
+                    <label for="search-term" class="form-label h3">Enter Word</label>
+                    <input type="text" name="search" class="form-control" id="search-term">
+                    <button class="btn btn-primary" style="background-color: rgb(192, 23, 8);">submit</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+    <div class="container mt-4">
+        <div class="row text-center">
+            <div>
+                <form action="/dictionary" method="POST">
+                    <div class="row">
+                        <div class="col-4 offset-1">
+                            <label for="tibetan-word" class="h3">Tibetan Word</label>
+                            <input type="text" class="form-control " id="tibetan-word" name="dictionary[tibetan]"
+                                value="<%= tibetanWord.tibetan%>">
+                        </div>
+                        <div class="col-4 offset-1">
+                            <label for="pos" class="h3">Part of Speech</label>
+                            <input type="text" class="form-control " id="pos" name="dictionary[pos]"
+                                value="<%=tibetanWord.pos%>">
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="row alternate mt-4">
+                        <div class="text-center h3">Alternate</div>
+                        <div class="col-12 text-center">
+
+                            <% for (i=0; i<12; i++) { %>
+                                <input class="col-2" type="text" value="<%=tibetanWord.alternate[i]%>"
+                                    name="dictionary[alternate]">
+
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <div class="row phonetic mt-4">
+                        <div class="text-center h3">Phonetic</div>
+                        <div class="col-12 text-center">
+                            <% for (i=0; i<12; i++) { %>
+                                <input class="col-2" type="text" value="<%=tibetanWord.phonetic[i]%>"
+                                    name="dictionary[phonetic]">
+
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <div class="row seealso mt-4">
+                        <div class="text-center h3">See Also</div>
+                        <div class="col-12 text-center ">
+                            <% for (i=0; i<12; i++) { %>
+                                <input class="col-2" type="text" value="<%= tibetanWord.seealso[i]%>"
+                                    name="dictionary[seealso]">
+
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <div class="row synonyms mt-4">
+                        <div class="text-center h3">Synonyms</div>
+                        <div class="col-12 text-center ">
+                            <% for (i=0; i<12; i++) { %>
+                                <input class="col-2" type="text" value="<%= tibetanWord.synonyms[i]%>"
+                                    name="dictionary[synonyms]">
+
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <div class="row homonyms mt-4">
+                        <div class="text-center h3">Homonyms</div>
+                        <div class="col-12 text-center ">
+                            <% for (i=0; i<12; i++) { %>
+                                <input class="col-2" type="text" value="<%= tibetanWord.homonyms[i]%>"
+                                    name="dictionary[homonyms]">
+
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <div class="row related mt-4">
+                        <div class="text-center h3">Related Words</div>
+                        <div class="col-12 text-center ">
+                            <% for (i=0; i<12; i++) { %>
+                                <input class="col-2" type="text" value="<%= tibetanWord.related[i]%>"
+                                    name="dictionary[related]">
+
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-8 offset-2 mt-5 text-center">
+                            <label id="move-definition-right" for="definition" class="h4">Definition</label>
+                            <textarea class="form-control" name="dictionary[definition]" id="definition" cols="100"
+                                rows="10"><%=tibetanWord.definition%></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <button class="btn btn-success" id="new-button">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+        </body>
+
+        </html>

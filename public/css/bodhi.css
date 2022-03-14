@@ -1,0 +1,242 @@
+body{
+  
+    font-family: adobe-garamond-pro, Georgia, 'Times New Roman', Times, serif; 
+   background-color: #fde269; 
+   color: #901517;
+}
+
+span:hover {
+    background-color: #a21a1c;
+    color: #fdf0c6;
+    transition: .2s;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+a {
+    color: white !important;
+}
+
+
+.is-hidden {
+    display: none;
+}
+
+.navbar-button {
+    color: white;
+}
+
+.layout-stripe {
+    height: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.heading-top {
+    margin-top: 1.75em;
+}
+#sanskrit {
+    font-size: 2em;
+}
+#tibetan {
+    font-size: 2em;
+    margin-top: -30px;
+}
+
+#english {
+    font-size: 1.5em;
+    font-style: italic;
+    margin-top: -20px;
+}
+
+#title {
+    font-size: 2em;
+    background: #901517;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 50px;
+    
+}
+
+
+.card-body {
+    background-color: #901517;
+    font-size: 1em;
+    color: white;
+}
+
+#translatedWord {
+    font-size: 2em;
+}
+#typeSpeech {
+    font-size: 1em;
+    color: rgb(227, 210, 210);
+    margin-top: 15px;
+}
+
+#blankTranslation {
+    font-size: 1em;
+    margin-top: 15px;
+}
+
+
+
+
+
+#verse-number-box {
+   background-color: #901517;
+    border: none;
+}
+
+
+.enter-verse-number {
+    font-size: 1em;
+     background-color:   #901517;
+}
+
+#go-verse-button {
+    color:  #901517;
+    background-color:  #ffffff; 
+ 
+   border-radius: 5px;
+    padding: .2em;
+    margin-bottom: .2em;
+}
+
+input {
+  
+    text-align: center;
+    width: 60px;
+    height: 30px;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+input::placeholder {
+  color: #901517;
+  text-align: center;
+}
+
+#left-arrow {
+    border-radius: 5px;
+    background-color:   #ffffff; 
+    color: #901517;
+    margin-left: -.3em;
+    
+   
+}
+
+#right-arrow {
+    border-radius: 5px;
+    background-color:   #ffffff; 
+    color: #901517;
+    margin-right: -1em;
+}
+
+
+
+.tibetan-span {
+    color: black;
+    font-size: 2em;
+    margin-left:-.23em;
+    margin-bottom: 20px;
+}
+
+.phonetic-span {
+    font-size: 1.5em;
+     color: #901517;
+      padding-bottom: 20px;
+}
+
+.english-verse {
+    color: black;
+    padding-bottom: 20px;
+    font-size:1.1em;
+}
+
+.phonetic {
+    margin-top: 5px;
+    margin-bottom: 4px;
+}
+
+#see-also {
+    color: #dcbc4d;
+}
+
+.navbar-nav > li > .dropdown-menu {
+background-color: #a21a1c; 
+color: white;
+
+}
+
+#sticky-top {
+    top: 4em;
+}
+
+
+.english-line {
+    color: rgb(9, 9, 106);
+    font-size: 1.25em;
+}
+
+.manjushri-container {
+    background-color: white;
+    border-radius: 30px;
+}
+
+#tibetan-on {
+    background-color: rgb(15, 89, 80);
+    border-radius: 6px;
+    color: white;
+    padding: 0;
+    padding: .1em;
+}
+
+#english-on {
+    background-color: rgb(140, 35, 53);
+    border-radius: 6px;
+    color: white;
+    padding: 0;
+ 
+      padding: .1em;
+}
+
+#phonetic-on {
+    background-color: rgb(207, 112, 49);
+    border-radius: 6px;
+    color: white;
+    padding: .1em;
+
+}
+
+.space {
+    margin: 30em;
+}
+
+#arapatsa {
+    padding-bottom: 1em;
+    padding-top: .3em;
+}
+
+div.anchor-color a {
+    color: black !important;
+}
+
+.toggle-content {
+	display: none;
+	height: 0;
+  opacity: 0;
+	overflow: hidden;
+	transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
+}
+
+.toggle-content.is-visible {
+	display: block;
+	height: auto;
+  opacity: 1;
+}
+
+.template-english {
+    font-size: 2em;
+}

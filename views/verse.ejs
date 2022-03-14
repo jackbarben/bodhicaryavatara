@@ -1,0 +1,100 @@
+<% layout('layouts/boilerplate')%>
+
+
+
+    <form action="/verse" method="get">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-2 text-center h3 d-inline">
+                    <label for="chapter" class="form-label text-center mb-0">Chapter</label>
+                    <input type="text" class="form-control" name="chapter" value="<%=englishChapter%>">
+                    <label for="verse" class="form-label mt-4 mb-0">Verse</label>
+                    <input type="text" class="form-control d-inline" name="verse" value="<%=englishVerse%>">
+
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-3 text-center">
+                    <button type="submit" class="btn btn-primary mt-4 mb-4"
+                        style="background-color:rgb(192, 23, 8);">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+    <div class="container" style="color: black;">
+        <div class="row justify-content-center">
+            <% for (const verse of tibetanVerse) {%>
+                <div class="col-12 h2 text-center">
+                    <%= verse %>
+                </div>
+                <% } %>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+
+        <div class="row text-center">
+            <form action="/verse" method="POST">
+                <div>
+                    <div class="row justify-content-center">
+                        <label for="verse" class="h3">Stanza 1</label>
+                        <input type="text" class="form-control" id="verse" name="verse1" value="<%=engArray[0]%>">
+                    </div>
+                </div>
+                <div>
+                    <div class="row justify-content-center">
+                        <label for="verse" class="h3">Stanza 2</label>
+                        <input type="text" class="form-control" id="verse" name="verse2" value="<%=engArray[1]%>">
+                    </div>
+                </div>
+                <div>
+                    <div class="row justify-content-center">
+                        <label for="verse" class="h3">Stanza 3</label>
+                        <input type="text" class="form-control" id="verse" name="verse3" value="<%=engArray[2]%>">
+                    </div>
+                </div>
+                <div>
+                    <div class="row justify-content-center">
+                        <label for="verse" class="h3">Stanza 4</label>
+                        <input type="text" class="form-control" id="verse" name="verse4" value="<%=engArray[3]%>">
+                    </div>
+                </div>
+                <div>
+                    <div class="row justify-content-center">
+                        <label for="verse" class="h3">Stanza 5</label>
+                        <input type="text" class="form-control" id="verse" name="verse5" value="<%=engArray[4]%>">
+                    </div>
+                </div>
+                <div>
+                    <div class="row justify-content-center">
+                        <label for="verse" class="h3">Stanza 6</label>
+                        <input type="text" class="form-control" id="verse" name="verse6" value="<%=engArray[5]%>">
+                    </div>
+                </div>
+                <div>
+                    <div class="row justify-content-center">
+                        <label for="verse" class="h3">Verse Number - DO NOT CHANGE IF EDITING!</label>
+                        <input type="text" class="form-control" id="verse" name="verseNumber" value="<%=englishVerse%>">
+                    </div>
+                </div>
+                <div>
+                    <div class="row justify-content-center">
+                        <label for="chapter" class="h3">Chapter Number - DO NOT CHANGE IF EDITING!</label>
+                        <input type="text" class="form-control" id="verse" name="chapterNumber"
+                            value="<%=englishChapter%>">
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required="">
+                    <label class="form-check-label" for="invalidCheck2">
+                        Confirm Changes!
+                    </label>
+                </div>
+                <div>
+                    <button class="btn btn-primary col-3 mt-5" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>

@@ -1,0 +1,86 @@
+<% layout('layouts/boilerplate')%>
+
+
+
+    <div class="container sticky-top" id="sticky-top">
+        <div class="row">
+            <div class="col-3">
+                <div class="card d-flex flex-column justify-content-between h-100">
+                    <div class="card-body text-center">
+                        <h5 id="translatedWord" class="card-title display-5">Tibetan</h5>
+                        <h6 id="phoneticWord" class="card-text"></h6>
+                        <h6 id="typeSpeech" class="card-subtitle mb-2 h5 text-muted">Part of Speech</h6>
+                        <h6 class="card-title">See also:</h6>
+                        <div id="see-also" class="card-title h3"></div>
+                        <p id="blankTranslation" class="card-text h5">Click on a tibetan word to the right for a
+                            definition.</p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-6 text-center">
+                <button class="btn" id="tibetan-on">Tibetan</button>
+                <button class="btn btn-info" id="english-on">English</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div id="tib-verse-container" class="col-12 text-center">
+        <% let i=0 %>
+            <%let k=0 %>
+                <%loop3: %>
+                    <%for (l=0; l < tibetanChapter.length; l++) { %>
+                        <% k=0%>
+                            <%i=0 %>
+                                <div class="mb-5"> Verse <%= l+1 %>
+                                        <div class="mb-2">
+                                            <% loop1: for (j=1; j <=tibetanChapter[l][tibetanChapter[l].length-1][1];
+                                                j++) { %>
+                                                <% if (tibetanChapter[l][k+1]) {%>
+
+                                                    <div class="tib<%=(4*l)+j+1%> tibetan-line">
+                                                        <%loop2: %>
+                                                            <% while (tibetanChapter[l][i][1]===(j)) {%>
+                                                                <span class="h3 d-inline tibetan-span">
+                                                                    <%=tibetanChapter[l][k][0]%>
+                                                                </span>
+                                                                <% i++ %>
+                                                                    <%k++ %>
+                                                                        <% if (!tibetanChapter[l][k]) { %>
+                                                                            <% continue loop1 %>
+                                                                                <% }%>
+                                                                                    <% }%>
+                                                    </div>
+                                                    <% }%>
+                                                        <% }%>
+                                        </div>
+                                </div>
+                                <div class="mb-5">
+                                    <% const engArray=english[l].english.split('|')%>
+                                        <% for (m=0; m<engArray.length; m++) { %>
+                                            <div class="english-verse p-0 english-line">
+                                                <%= engArray[m] %>
+
+                                            </div>
+                                            <% }%>
+                                </div>
+                                <% }%>
+
+    </div>
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chapter.js"></script>
+    </body>
+
+    </html>

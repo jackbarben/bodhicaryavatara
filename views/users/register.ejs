@@ -1,0 +1,50 @@
+<% layout('layouts/boilerplate')%>
+    <link rel="stylesheet" href="/css/register.css">
+
+
+
+    <ul>
+        <% if (typeof errors !='undefined' ) { %>
+            <% errors.forEach(error=> { %>
+                <li>
+                    <%= error.message %>
+                </li>
+                <% }) %>
+                    <% } %>
+    </ul>
+
+
+
+
+
+
+    <div class="container card-group">
+        <div class="row justify-content-center">
+            <h1 class="text-center mt-5 mb-5" id="register-heading">Register</h1>
+            <div class="col 10 col-md-8 col-lg-4 text-center" id="register-container">
+                <form action="/users/register" method="POST" class="row justify-content-center">
+                    <div class="col-8 col-lg-8 mt-5">
+                        <input type="text" id="name" name="name" placeholder="Name" class="form-control" required>
+                    </div>
+                    <div class="col-8 col-lg-8 mt-5">
+                        <input type="email" id="email" name="email" placeholder="Email" class="form-control" required>
+                    </div>
+                    <div class="col-8 col-lg-8 mt-5">
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control" required>
+                    </div>
+                    <div class="col-8 col-lg-8 mt-5">
+                        <input type="password" id="password2" name="password2" placeholder="Confirm Password" class="form-control" required>
+                    </div>
+                    <div>
+                        <button type="submit" value="Register" class="btn btn-primary mt-3" id="register-login">Submit</button>
+                    </div>
+
+
+                    <div id="anchor-container" class="mt-5">
+                        <a href="/users/login" id="register-register">Already registered? Login here</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
