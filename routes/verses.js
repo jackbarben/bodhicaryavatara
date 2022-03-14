@@ -20,8 +20,24 @@ const validateVerses = (req, res, next) => {
         next()
     }
 }
+const isAuthorized = async(req, res, next) => {
+    const { authorized } = req.user
 
-router.get('/', isLoggedIn, catchAsync(async(req, res) => {
+    if (authorized === null) {
+        req.flash('error', 'You do not have permission to do that.')
+        return res.redirect('/')
+    } else if (authorized.includes('bodhicaryavatara') || authorized.includes('all')) {
+        next()
+
+    } else {
+        req.flash('error', 'You do not have permission to do that.')
+        return res.redirect('/')
+    }
+
+
+}
+
+router.get('/', isLoggedIn, isAuthorized, catchAsync(async(req, res) => {
 
     let englishVerse = '7'
     let englishChapter = '8'
