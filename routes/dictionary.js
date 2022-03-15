@@ -4,15 +4,9 @@ const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
 const clean = require('../utils/clean')
 const cleanPhonetic = require('../utils/cleanPhonetic')
-
 const { isLoggedIn } = require('../utils/middleware')
-
-
 const { pool } = require('../utils/databaseConfig')
-
 const { dictionarySchema } = require('../schemas');
-
-
 
 const validateDictionary = (req, res, next) => {
 
@@ -48,14 +42,12 @@ const isAuthorized = async(req, res, next) => {
         return res.redirect('/')
     }
 
-
 }
 
 
 router.get('/', isLoggedIn, isAuthorized, catchAsync(async(req, res) => {
 
     let tibetanWord = {
-
         tibetan: '',
         pos: '',
         seealso: '',
@@ -76,6 +68,7 @@ router.get('/', isLoggedIn, isAuthorized, catchAsync(async(req, res) => {
 
         try {
             const unparsedObject = await pool.query(`SELECT * FROM dictionary WHERE '${searchWord}'=ANY(alternate)`)
+            console.log(unparsedObject)
             tibetanWord.definition = unparsedObject.rows[0].definition
             tibetanWord.alternate = unparsedObject.rows[0].alternate.filter(Boolean);
             tibetanWord.phonetic = unparsedObject.rows[0].phonetic.filter(Boolean)

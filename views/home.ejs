@@ -26,7 +26,7 @@
                     <div class="col-6 mb-5">Enter Chapter and Verse Number
                         <div class="enter-verse-number lead">
                             <form action="/" method="POST" id="verse-number-box" class="form-control">
-                                <input class="form-group" type="number" min="7" max="8" name='chapter' aria-label="Search" value="<%=chapterNumber.chapter%>">
+                                <input class="form-group" type="number" min="7" max="8" name='chapter' aria-label="Search" id="chapter-number-value" value="<%=chapterNumber.chapter%>">
                                 <input class="form-group" name="verse" type="number" min="1" max="150" id="verse-number-value" value="<%=verseNumber.verse%>">
 
                                 <button class="btn" type="submit" id="go-verse-button">Submit</button>
@@ -34,10 +34,10 @@
                             </form>
                             <div class="row justify-content-center">
 
-                                <form action="/" method="POST" class="col-1 d-inline">
-
-                                    <button type="submit" name="verse" id="left-arrow" value="prev">&#8592;</button>
-
+                                <form action="/" method="POST" class="col-1 d-inline" id="prev-form">
+                                    <input class="form-group is-hidden" name="verse" type="number" id="prev-verse-number">
+                                    <input class="form-group is-hidden" type="number" name='chapter' aria-label="Search" id="prev-chapter-number">
+                                    <button type="submit" name="verse" id="prev-arrow">&#8592;</button>
                                 </form>
 
 
@@ -53,10 +53,10 @@
                                 </div>
 
 
-                                <form action="/" method="POST" class="col-1 d-inline">
-
-                                    <button type="submit" name="verse" id="right-arrow" value="next">&#8594;</button>
-
+                                <form action="/" method="POST" class="col-1 d-inline" id="next-form">
+                                    <input class="form-group is-hidden" name="verse" type="number" id="next-verse-number">
+                                    <input class="form-group is-hidden" type="number" name='chapter' aria-label="Search" id="next-chapter-number">
+                                    <button type="submit" name="verse" id="next-arrow">&#8594;</button>
                                 </form>
 
 
@@ -68,272 +68,65 @@
                 </div>
 
 
-
-
-
                 <div class="tibetan-listener">
                     <div id="tib-verse-container">
 
                         <% let phoneticClone=parsedVerse.map((x)=> x); %>
+                            <% for(k=0; k<lengths.stanza; k++) { %>
+                                <div class="tib<%=k%> tibetan-line">
+                                    <% for (i=0; i<parsedVerse.length; i++) { %>
 
-                            <div class="tib1 tibetan-line">
-                                <% for (i=0; i<parsedVerse.length; i++) { %>
+                                        <% if (parsedVerse[i][1]=== k+1) { %>
 
-                                    <% if (parsedVerse[i][1]===1) { %>
-
-                                        <span class="text-center h3 d-inline tibetan-span" id="<%=`tibetan-container${i}`%>">
-
-                                            <%= (parsedVerse[i][0]) %>
-                                        </span>
-
-                                        <%} else {%>
-                                            <% parsedVerse.splice(0, i) %>
-                                                <% i=1000 %>
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-                            <div class="phonetic phonetic-line">
-                                <% for (i=0; i<phoneticClone.length; i++) { %>
-
-                                    <% if (phoneticClone[i][1]===1) { %>
-
-                                        <strong class="text-center h3 d-inline phonetic-span" id="<%=`phonetic-container${i}`%>">
-
-                                            <%= (phoneticClone[i][3]) %>
-                                        </strong>
-
-                                        <%} else {%>
-                                            <% phoneticClone.splice(0, i) %>
-                                                <% i=1000 %>
-
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-
-
-                            <div class="english-verse mb-2 english-line">
-                                <%=engArray[0]%>
-                            </div>
-
-                            <div class="tib2 tibetan-line">
-
-                                <% for (i=0; i<parsedVerse.length; i++) { %>
-
-                                    <% if (parsedVerse[i][1]===2) { %>
-                                        <span class="text-center h3 d-inline tibetan-span" id="<%=`tibetan-container${i+7}`%>">
+                                            <span class="text-center h3 d-inline tibetan-span" id="<%=`tibetan-container${i}`%>">
 
                                             <%= (parsedVerse[i][0]) %>
                                         </span>
 
-
-                                        <%} else {%>
-                                            <% parsedVerse.splice(0, i) %>
-                                                <% i=1000 %>
-
-                                                    <% } %>
+                                            <%} else {%>
+                                                <% parsedVerse.splice(0, i) %>
+                                                    <% i=1000 %>
                                                         <% } %>
-                            </div>
+                                                            <% } %>
 
-                            <div class="phonetic phonetic-line">
-                                <% for (i=0; i<phoneticClone.length; i++) { %>
+                                </div>
 
-                                    <% if (phoneticClone[i][1]===2) { %>
+                                <div class="phonetic phonetic-line">
+                                    <% for (i=0; i<phoneticClone.length; i++) { %>
 
-                                        <strong class="text-center h3 d-inline phonetic-span" id="<%=`phonetic-container${i}`%>">
+                                        <% if (phoneticClone[i][1]===k+1) { %>
+
+                                            <strong class="text-center h3 d-inline phonetic-span" id="<%=`phonetic-container${i}`%>">
 
                                             <%= (phoneticClone[i][3]) %>
                                         </strong>
 
-                                        <%} else {%>
-                                            <% phoneticClone.splice(0, i) %>
-                                                <% i=1000 %>
+                                            <%} else {%>
+                                                <% phoneticClone.splice(0, i) %>
+                                                    <% i=1000 %>
 
-                                                    <% } %>
                                                         <% } %>
+                                                            <% } %>
 
-                            </div>
-
-                            <div class="english-verse mb-2 english-line">
-                                <%=engArray[1]%>
-                            </div>
-
-                            <div class="tib3 tibetan-line">
-                                <% for (i=0; i<parsedVerse.length; i++) { %>
-
-                                    <% if (parsedVerse[i][1]===3) { %>
-                                        <span class="text-center h3 d-inline tibetan-span" id="<%=`tibetan-container${i+14}`%>">
-
-                                            <%= (parsedVerse[i][0]) %>
-                                        </span>
+                                </div>
 
 
-                                        <%} else {%>
-                                            <% parsedVerse.splice(0, i) %>
-                                                <% i=1000 %>
 
-                                                    <% } %>
-                                                        <% } %>
+                                <div class="english-verse mb-2 english-line">
+                                    <%=engArray[k]%>
+                                </div>
+                                <% } %>
 
-                            </div>
-
-                            <div class="phonetic phonetic-line">
-                                <% for (i=0; i<phoneticClone.length; i++) { %>
-
-                                    <% if (phoneticClone[i][1]===3) { %>
-
-                                        <strong class="text-center h3 d-inline phonetic-span" id="<%=`phonetic-container${i}`%>">
-
-                                            <%= (phoneticClone[i][3]) %>
-                                        </strong>
-
-                                        <%} else {%>
-                                            <% phoneticClone.splice(0, i) %>
-                                                <% i=1000 %>
-
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-                            <div class="english-verse mb-2 english-line">
-                                <%=engArray[2]%>
-                            </div>
-
-                            <div class="tib4 tibetan-line">
-                                <% for (i=0; i<parsedVerse.length; i++) { %>
-                                    <% if (parsedVerse[i][1]===4) { %>
-                                        <span class="text-center h3 d-inline tibetan-span" id="<%=`tibetan-container${i+21}`%>">
-
-                                            <%= (parsedVerse[i][0]) %>
-                                        </span>
-
-                                        <%} else {%>
-                                            <% parsedVerse.splice(0, i) %>
-                                                <% i=1000 %>
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-                            <div class="phonetic phonetic-line">
-                                <% for (i=0; i<phoneticClone.length; i++) { %>
-
-                                    <% if (phoneticClone[i][1]===4) { %>
-
-                                        <strong class="text-center h3 d-inline phonetic-span" id="<%=`phonetic-container${i}`%>">
-
-                                            <%= (phoneticClone[i][3]) %>
-                                        </strong>
-
-                                        <%} else {%>
-                                            <% phoneticClone.splice(0, i) %>
-                                                <% i=1000 %>
-
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-                            <div class="english-verse mb-2 english-line">
-                                <%=engArray[3]%>
-                            </div>
-
-                            <div class="tib5 tibetan-line">
-                                <% for (i=0; i<parsedVerse.length; i++) { %>
-                                    <% if (parsedVerse[i][1]===5) { %>
-                                        <span class="text-center h3 d-inline tibetan-span" id="<%=`tibetan-container${i+28}`%>">
-
-                                            <%= (parsedVerse[i][0]) %>
-                                        </span>
-
-                                        <%} else {%>
-                                            <% parsedVerse.splice(0, i) %>
-                                                <% i=1000 %>
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-                            <div class="phonetic phonetic-line">
-                                <% for (i=0; i<phoneticClone.length; i++) { %>
-
-                                    <% if (phoneticClone[i][1]===5) { %>
-
-                                        <strong class="text-center h3 d-inline phonetic-span" id="<%=`phonetic-container${i}`%>">
-
-                                            <%= (phoneticClone[i][3]) %>
-                                        </strong>
-
-                                        <%} else {%>
-                                            <% phoneticClone.splice(0, i) %>
-                                                <% i=1000 %>
-
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-                            <div class="english-verse mb-2 english-line">
-                                <%=engArray[4]%>
-                            </div>
-
-                            <div class="tib6 tibetan-line">
-                                <% for (i=0; i<parsedVerse.length; i++) { %>
-                                    <% if (parsedVerse[i][1]===6) { %>
-                                        <span class="text-center h3 d-inline tibetan-span" id="<%=`tibetan-container${i+35}`%>">
-
-                                            <%= (parsedVerse[i][0]) %>
-                                        </span>
-
-                                        <%} else {%>
-                                            <% parsedVerse.splice(0, i) %>
-                                                <% i=1000 %>
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-                            <div class="phonetic phonetic-line">
-                                <% for (i=0; i<phoneticClone.length; i++) { %>
-
-                                    <% if (phoneticClone[i][1]===6) { %>
-
-                                        <strong class="text-center h3 d-inline phonetic-span" id="<%=`phonetic-container${i}`%>">
-
-                                            <%= (phoneticClone[i][3]) %>
-                                        </strong>
-
-                                        <%} else {%>
-                                            <% phoneticClone.splice(0, i) %>
-                                                <% i=1000 %>
-
-                                                    <% } %>
-                                                        <% } %>
-
-                            </div>
-
-                            <div class="english-verse mb-2 english-line">
-                                <%=engArray[5]%>
-                            </div>
                     </div>
-
-
 
                 </div>
 
-
-
             </div>
-
 
         </div>
 
 
-
+    </div>
     </div>
 
 

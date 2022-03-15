@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const { pool } = require("../utils/dbConfig");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
@@ -13,8 +12,6 @@ router.get("/register", checkAuthenticated, catchAsync(async(req, res) => {
 }));
 
 router.get("/login", checkAuthenticated, catchAsync(async(req, res) => {
-    // flash sets a messages variable. passport sets the error message
-
     res.render("users/login.ejs");
 }))
 
@@ -29,9 +26,7 @@ router.get("/logout", catchAsync(async(req, res) => {
 
 router.post("/register", catchAsync(async(req, res) => {
     let { name, email, password, password2 } = req.body;
-
     let errors = [];
-
 
     if (!name || !email || !password || !password2) {
         errors.push({ message: "Please enter all fields" });
@@ -88,7 +83,6 @@ router.post("/register", catchAsync(async(req, res) => {
 router.post("/login", passport.authenticate("local", { failureRedirect: "/users/login", failureFlash: true }),
     catchAsync(async function(req, res) {
         const redirectUrl = req.session.returnTo || '/'
-        console.log(req.user)
         req.session.user = req.user
         req.session.save(function(err) {
             req.flash("success", "You are now logged in.");

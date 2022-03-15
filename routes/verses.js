@@ -4,8 +4,6 @@ const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
 const cleanVerse = require('../utils/cleanVerse');
 const { isLoggedIn } = require('../utils/middleware')
-
-
 const { pool } = require('../utils/databaseConfig')
 const { versesSchema } = require('../schemas')
 
@@ -20,6 +18,7 @@ const validateVerses = (req, res, next) => {
         next()
     }
 }
+
 const isAuthorized = async(req, res, next) => {
     const { authorized } = req.user
 
@@ -39,7 +38,7 @@ const isAuthorized = async(req, res, next) => {
 
 router.get('/', isLoggedIn, isAuthorized, catchAsync(async(req, res) => {
 
-    let englishVerse = '7'
+    let englishVerse = '1'
     let englishChapter = '8'
     if (Object.keys(req.query).length === 0) {
 

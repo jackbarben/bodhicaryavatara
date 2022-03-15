@@ -1,3 +1,39 @@
+const nextArrow = document.getElementById('next-arrow')
+const prevArrow = document.getElementById('prev-arrow')
+
+const verseNumber = document.getElementById('verse-number-value')
+const chapterNumber = document.getElementById('chapter-number-value')
+
+const nextChapter = document.getElementById('next-chapter-number')
+const nextVerse = document.getElementById('next-verse-number')
+const nextForm = document.getElementById('next-form')
+
+const prevChapter = document.getElementById('prev-chapter-number')
+const prevVerse = document.getElementById('prev-verse-number')
+const prevForm = document.getElementById('prev-form')
+
+nextArrow.addEventListener('click', (e) => {
+    e.preventDefault()
+    nextVerse.value = (Number(verseNumber.value)) + 1
+    nextChapter.value = chapterNumber.value
+    nextForm.submit()
+})
+
+prevArrow.addEventListener('click', (e) => {
+    e.preventDefault()
+    if (Number(verseNumber.value) === 1) {
+        prevVerse.value = 1
+        prevChapter.value = chapterNumber.value
+        prevForm.submit()
+    } else {
+        prevVerse.value = (Number(verseNumber.value)) - 1
+        prevChapter.value = chapterNumber.value
+        console.log(prevVerse.value)
+        prevForm.submit()
+    }
+
+})
+
 const tibetanOn = document.getElementById('tibetan-on')
 const englishOn = document.getElementById('english-on')
 const phoneticOn = document.getElementById('phonetic-on')
@@ -132,25 +168,8 @@ socket.on('seeAlso', (word, msg) => {
 
 
 
-// Form buttons
-
-
-const verseChangePrev = document.getElementById('left-arrow')
-const verseChangeNext = document.getElementById('right-arrow')
-
-verseChangePrev.addEventListener('click', function(e) {
-    verseChangePrev.style.visibility = 'hidden'
-    verseChangeNext.style.visibility = 'hidden'
-})
-
-verseChangeNext.addEventListener('click', function(e) {
-    verseChangePrev.style.visibility = 'hidden'
-    verseChangeNext.style.visibility = 'hidden'
-})
-
-
 function addShas() {
-    for (i = 1; i < 7; i++) {
+    for (i = 1; i < tibetanLine.length; i++) {
         if (document.querySelector(`.tib${i}`).lastElementChild) {
             const replacement = document.querySelector(`.tib${i}`).lastElementChild.innerText
             if (replacement.slice(replacement.length - 2, replacement.length).includes('ག་')) {

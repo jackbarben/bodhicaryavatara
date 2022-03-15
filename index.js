@@ -12,41 +12,20 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const pgSession = require('connect-pg-simple')(session);
 const ExpressError = require('./utils/ExpressError')
-
-let fullDictionary
-
 const initializePassport = require('./utils/passportConfig')
-
 initializePassport(passport)
-
 const morgan = require('morgan')
 app.use(morgan('tiny'))
-
-
-
-
-
 app.set('view engine', 'ejs');
-
-
-
 app.set('views', path.join(__dirname, 'views'))
-
-const parseVerseNoDatabase = require('./utils/parseVerseNoDatabase')
-const catchAsync = require('./utils/catchAsync')
 const dictionary = require('./routes/dictionary')
 const verse = require('./routes/verses')
 const bodhicarya = require('./routes/bodhicarya')
 const users = require('./routes/users')
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
-
-
-
+const ejsMate = require('ejs-mate');
+app.engine('ejs', ejsMate)
 
 const sessionMiddleware = {
     store: new pgSession({
@@ -63,18 +42,9 @@ const sessionMiddleware = {
     }
 }
 app.use(session(sessionMiddleware))
-
-const ejsMate = require('ejs-mate');
-
-app.engine('ejs', ejsMate)
-
-
-
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
-
-
 
 app.use((req, res, next) => {
 
@@ -85,14 +55,10 @@ app.use((req, res, next) => {
 })
 
 
-
 app.use('/dictionary', dictionary)
 app.use('/verse', verse)
 app.use('/', bodhicarya)
 app.use('/users', users)
-
-
-
 
 
 
