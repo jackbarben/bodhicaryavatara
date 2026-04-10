@@ -5,7 +5,7 @@ const { Pool, Client } = require('pg')
 
 
 
-const pool = process.env.DB_HOST === 'bodhi.cemgkvzbi9oy.us-east-1.rds.amazonaws.com' ?
+const pool = process.env.DB_HOST && process.env.DB_HOST.includes('rds.amazonaws.com') ?
     new Pool({
         user: process.env.DB_USER,
         database: process.env.DB_DATABASE,
